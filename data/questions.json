@@ -1,98 +1,110 @@
 [
   {
     "question_id": 1,
-    "question": "What is a Python list comprehension?",
-    "expected_answer": "A list comprehension is a concise way to create lists using a single line of code with an expression followed by a for clause.",
-    "key_concepts": ["list", "concise", "expression", "for clause", "single line"],
-    "difficulty": "easy",
-    "topic": "Python"
+    "question": "Briefly explain the distinction between a within-subject design and a between-subject design. What is the beauty of the within-subject design? If it is so beautiful, why isn\u2019t it always used?",
+    "expected_answer": "Within-subject design exposes the same subjects to multiple treatments, while between-subject design uses different subjects for each treatment. The beauty of within-subject design is that it controls for individual heterogeneity and increases statistical power. It is not always used because it can create order effects, learning effects, contamination across treatments, and demand effects.",
+    "key_concepts": [
+      "within-subject",
+      "between-subject",
+      "heterogeneity control",
+      "order effects",
+      "learning effects",
+      "statistical power"
+    ],
+    "difficulty": "medium",
+    "topic": "Experimental Design"
   },
   {
     "question_id": 2,
-    "question": "What is the difference between a Python list and a tuple?",
-    "expected_answer": "A list is mutable and can be changed after creation, while a tuple is immutable and cannot be modified once created.",
-    "key_concepts": ["mutable", "immutable", "list", "tuple", "modified"],
-    "difficulty": "easy",
-    "topic": "Python"
+    "question": "In order to make inferences about causality, why is it necessary to have a full factorial design when varying treatments in two dimensions?",
+    "expected_answer": "A full factorial design includes all combinations of treatment levels, allowing researchers to identify both main effects and interaction effects. Without all combinations, effects become confounded and causal inference is compromised.",
+    "key_concepts": [
+      "full factorial",
+      "causality",
+      "interaction effects",
+      "confounding",
+      "experimental control"
+    ],
+    "difficulty": "medium",
+    "topic": "Experimental Design"
   },
   {
     "question_id": 3,
-    "question": "What is a Python dictionary?",
-    "expected_answer": "A dictionary is an unordered collection of key-value pairs that allows fast lookups by key.",
-    "key_concepts": ["key-value", "unordered", "collection", "lookups"],
-    "difficulty": "easy",
-    "topic": "Python"
+    "question": "Briefly explain the strategy method in eliciting choice in a sequential game. Discuss the pros and cons.",
+    "expected_answer": "The strategy method asks subjects to state contingent choices for every possible decision node. Pros include richer data and observing off-equilibrium behavior. Cons include hypothetical bias and differences between predicted and actual emotional responses.",
+    "key_concepts": [
+      "strategy method",
+      "sequential game",
+      "contingent choices",
+      "hypothetical bias",
+      "off-equilibrium behavior"
+    ],
+    "difficulty": "medium",
+    "topic": "Experimental Methods"
   },
   {
     "question_id": 4,
-    "question": "What is a decorator in Python?",
-    "expected_answer": "A decorator is a function that takes another function as input, adds some functionality, and returns a modified function without changing its source code.",
-    "key_concepts": ["function", "wraps", "modifies", "without changing source"],
+    "question": "Consider Gneezy, Niederle and Rustichini. What experimenter demand effects might we worry about, and how worried should we be?",
+    "expected_answer": "Strong demand effects occur if subjects try to confirm perceived hypotheses. Weak demand effects occur if subjects infer social expectations (e.g., gender norms). In GNR, anonymity and real incentives reduce these concerns, making demand effects possible but likely small.",
+    "key_concepts": [
+      "experimenter demand",
+      "strong demand",
+      "weak demand",
+      "gender norms",
+      "incentives"
+    ],
     "difficulty": "medium",
-    "topic": "Python"
+    "topic": "Experimental Bias"
   },
   {
     "question_id": 5,
-    "question": "What is the difference between supervised and unsupervised learning?",
-    "expected_answer": "Supervised learning trains on labeled data with known outputs, while unsupervised learning finds patterns in unlabeled data without predefined outputs.",
-    "key_concepts": ["labeled", "unlabeled", "patterns", "outputs", "supervised"],
+    "question": "Should we worry that subjects were already exerting near-maximal effort in the non-competitive environment in GNR?",
+    "expected_answer": "This is a potential concern because if effort was already maximal, competition would not increase performance. However, observed increases in effort under competition suggest baseline effort was not maximal.",
+    "key_concepts": [
+      "ceiling effect",
+      "effort response",
+      "competition",
+      "baseline effort"
+    ],
     "difficulty": "medium",
-    "topic": "ML"
+    "topic": "Experimental Interpretation"
   },
   {
     "question_id": 6,
-    "question": "What is overfitting in machine learning?",
-    "expected_answer": "Overfitting occurs when a model learns the training data too well, including noise and outliers, resulting in poor generalization to new unseen data.",
-    "key_concepts": ["training data", "noise", "generalization", "unseen data", "poor performance"],
+    "question": "Give a real-world population you would feel uncomfortable extrapolating GNR\u2019s results to. Why?",
+    "expected_answer": "Elite professional athletes or senior executives. These groups self-select into competitive environments, so their response to competition may differ in magnitude or direction compared to the experimental sample.",
+    "key_concepts": [
+      "external validity",
+      "self-selection",
+      "competition response",
+      "generalizability"
+    ],
     "difficulty": "medium",
-    "topic": "ML"
+    "topic": "External Validity"
   },
   {
     "question_id": 7,
-    "question": "What is a binary search tree?",
-    "expected_answer": "A binary search tree is a tree data structure where each node has at most two children, and the left child is smaller than the parent while the right child is larger.",
-    "key_concepts": ["tree", "two children", "left smaller", "right larger", "node"],
-    "difficulty": "medium",
-    "topic": "Data Structures"
+    "question": "Why don\u2019t experimental economists lie about probabilities (e.g., say 50% chance but set 4%)?",
+    "expected_answer": "Lying destroys experimental control because subjects' beliefs influence behavior. If beliefs do not match the stated environment, causal inference becomes invalid.",
+    "key_concepts": [
+      "experimental control",
+      "beliefs",
+      "causal inference",
+      "credibility"
+    ],
+    "difficulty": "easy",
+    "topic": "Experimental Ethics"
   },
   {
     "question_id": 8,
-    "question": "What is the time complexity of searching in a hash table?",
-    "expected_answer": "The average time complexity of searching in a hash table is O(1) constant time, though worst case can be O(n) due to collisions.",
-    "key_concepts": ["O(1)", "constant time", "average case", "collisions", "hash table"],
-    "difficulty": "medium",
-    "topic": "Data Structures"
-  },
-  {
-    "question_id": 9,
-    "question": "What is gradient descent?",
-    "expected_answer": "Gradient descent is an optimization algorithm that iteratively adjusts model parameters in the direction opposite to the gradient of the loss function to minimize error.",
-    "key_concepts": ["optimization", "gradient", "loss function", "minimize", "iteratively"],
-    "difficulty": "hard",
-    "topic": "ML"
-  },
-  {
-    "question_id": 10,
-    "question": "What is a Python generator?",
-    "expected_answer": "A generator is a function that uses the yield keyword to lazily produce a sequence of values one at a time, saving memory compared to returning a full list.",
-    "key_concepts": ["yield", "lazy", "sequence", "memory", "function"],
-    "difficulty": "medium",
-    "topic": "Python"
-  },
-  {
-    "question_id": 11,
-    "question": "What is a stack data structure?",
-    "expected_answer": "A stack is a linear data structure that follows the Last In First Out principle, where elements are added and removed from the same end called the top.",
-    "key_concepts": ["LIFO", "Last In First Out", "top", "push", "pop"],
+    "question": "Why not simply say the chance of earning $10 is random?",
+    "expected_answer": "If probabilities are unspecified, subjects form heterogeneous beliefs. This reduces control and makes it difficult to identify treatment effects cleanly.",
+    "key_concepts": [
+      "belief heterogeneity",
+      "control",
+      "treatment effects"
+    ],
     "difficulty": "easy",
-    "topic": "Data Structures"
-  },
-  {
-    "question_id": 12,
-    "question": "What is regularization in machine learning?",
-    "expected_answer": "Regularization is a technique to prevent overfitting by adding a penalty term to the loss function that discourages complex models with large weights.",
-    "key_concepts": ["overfitting", "penalty", "loss function", "complex models", "weights"],
-    "difficulty": "hard",
-    "topic": "ML"
+    "topic": "Experimental Control"
   }
 ]
