@@ -20,3 +20,4 @@ tests/test_evaluation_engine.py
 tests/test_feedback_generator.py
 tests/test_quiz_engine.py
 tests/test_session_manager.py
+tests/test_tutor.py
