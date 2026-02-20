@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Demo entry point for the Local LLM Tutor."""
 
+import os
+
+# Workaround: prevent "OMP: Error #15" crash when multiple libraries (e.g.
+# Intel MKL and PyTorch/faster-whisper) each load their own copy of the OpenMP
+# runtime.  Using setdefault means a value already set by the caller is kept.
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+
 import argparse
 import logging
 import yaml
