@@ -38,12 +38,15 @@ class TTSModule:
         if not text:
             return
         logger.info(f"TTS speaking: {text[:80]}...")
-        if self._engine is None:
-            print(f"[TTS] {text}")
-            return
         with self._lock:
             self._speaking = True
             try:
+                # Reinitialize engine on each call to avoid pyttsx3 reuse issues
+                # where the event loop fails to restart after the first utterance.
+                self._init_engine()
+                if self._engine is None:
+                    print(f"[TTS] {text}")
+                    return
                 self._engine.say(text)
                 if blocking:
                     self._engine.runAndWait()
