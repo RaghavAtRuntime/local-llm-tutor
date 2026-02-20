@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: local-llm-tutor
+Version: 0.1.0
+Summary: Locally hosted AI tutor with voice interaction
+Requires-Python: >=3.9
+Provides-Extra: audio
+Provides-Extra: dev

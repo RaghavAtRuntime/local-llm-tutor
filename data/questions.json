@@ -1,0 +1,98 @@
+[
+  {
+    "question_id": 1,
+    "question": "What is a Python list comprehension?",
+    "expected_answer": "A list comprehension is a concise way to create lists using a single line of code with an expression followed by a for clause.",
+    "key_concepts": ["list", "concise", "expression", "for clause", "single line"],
+    "difficulty": "easy",
+    "topic": "Python"
+  },
+  {
+    "question_id": 2,
+    "question": "What is the difference between a Python list and a tuple?",
+    "expected_answer": "A list is mutable and can be changed after creation, while a tuple is immutable and cannot be modified once created.",
+    "key_concepts": ["mutable", "immutable", "list", "tuple", "modified"],
+    "difficulty": "easy",
+    "topic": "Python"
+  },
+  {
+    "question_id": 3,
+    "question": "What is a Python dictionary?",
+    "expected_answer": "A dictionary is an unordered collection of key-value pairs that allows fast lookups by key.",
+    "key_concepts": ["key-value", "unordered", "collection", "lookups"],
+    "difficulty": "easy",
+    "topic": "Python"
+  },
+  {
+    "question_id": 4,
+    "question": "What is a decorator in Python?",
+    "expected_answer": "A decorator is a function that takes another function as input, adds some functionality, and returns a modified function without changing its source code.",
+    "key_concepts": ["function", "wraps", "modifies", "without changing source"],
+    "difficulty": "medium",
+    "topic": "Python"
+  },
+  {
+    "question_id": 5,
+    "question": "What is the difference between supervised and unsupervised learning?",
+    "expected_answer": "Supervised learning trains on labeled data with known outputs, while unsupervised learning finds patterns in unlabeled data without predefined outputs.",
+    "key_concepts": ["labeled", "unlabeled", "patterns", "outputs", "supervised"],
+    "difficulty": "medium",
+    "topic": "ML"
+  },
+  {
+    "question_id": 6,
+    "question": "What is overfitting in machine learning?",
+    "expected_answer": "Overfitting occurs when a model learns the training data too well, including noise and outliers, resulting in poor generalization to new unseen data.",
+    "key_concepts": ["training data", "noise", "generalization", "unseen data", "poor performance"],
+    "difficulty": "medium",
+    "topic": "ML"
+  },
+  {
+    "question_id": 7,
+    "question": "What is a binary search tree?",
+    "expected_answer": "A binary search tree is a tree data structure where each node has at most two children, and the left child is smaller than the parent while the right child is larger.",
+    "key_concepts": ["tree", "two children", "left smaller", "right larger", "node"],
+    "difficulty": "medium",
+    "topic": "Data Structures"
+  },
+  {
+    "question_id": 8,
+    "question": "What is the time complexity of searching in a hash table?",
+    "expected_answer": "The average time complexity of searching in a hash table is O(1) constant time, though worst case can be O(n) due to collisions.",
+    "key_concepts": ["O(1)", "constant time", "average case", "collisions", "hash table"],
+    "difficulty": "medium",
+    "topic": "Data Structures"
+  },
+  {
+    "question_id": 9,
+    "question": "What is gradient descent?",
+    "expected_answer": "Gradient descent is an optimization algorithm that iteratively adjusts model parameters in the direction opposite to the gradient of the loss function to minimize error.",
+    "key_concepts": ["optimization", "gradient", "loss function", "minimize", "iteratively"],
+    "difficulty": "hard",
+    "topic": "ML"
+  },
+  {
+    "question_id": 10,
+    "question": "What is a Python generator?",
+    "expected_answer": "A generator is a function that uses the yield keyword to lazily produce a sequence of values one at a time, saving memory compared to returning a full list.",
+    "key_concepts": ["yield", "lazy", "sequence", "memory", "function"],
+    "difficulty": "medium",
+    "topic": "Python"
+  },
+  {
+    "question_id": 11,
+    "question": "What is a stack data structure?",
+    "expected_answer": "A stack is a linear data structure that follows the Last In First Out principle, where elements are added and removed from the same end called the top.",
+    "key_concepts": ["LIFO", "Last In First Out", "top", "push", "pop"],
+    "difficulty": "easy",
+    "topic": "Data Structures"
+  },
+  {
+    "question_id": 12,
+    "question": "What is regularization in machine learning?",
+    "expected_answer": "Regularization is a technique to prevent overfitting by adding a penalty term to the loss function that discourages complex models with large weights.",
+    "key_concepts": ["overfitting", "penalty", "loss function", "complex models", "weights"],
+    "difficulty": "hard",
+    "topic": "ML"
+  }
+]

@@ -1,0 +1,2 @@
+[console_scripts]
+local-llm-tutor = local_llm_tutor.tutor:main
