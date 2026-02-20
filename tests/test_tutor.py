@@ -202,17 +202,17 @@ def test_tts_speak_reinitializes_engine_each_call():
     assert mock_engine.runAndWait.call_count == 2
 
 
-def test_tts_speak_stops_engine_after_each_call():
-    """TTSModule.speak() must call engine.stop() after every utterance.
+def test_tts_speak_does_not_stop_engine_after_each_call():
+    """TTSModule.speak() must NOT call engine.stop() after a normal utterance.
 
     pyttsx3 caches the engine in an internal WeakValueDictionary keyed by
-    driver name.  As long as *any* Python object holds a strong reference to
-    the engine, pyttsx3.init() returns that same (now stale) instance whose
-    event loop cannot be restarted.  Calling stop() and then clearing the
-    module's own reference lets the WeakValueDictionary entry be garbage-
-    collected so the next pyttsx3.init() call creates a truly fresh engine,
-    which is why questions and feedback are spoken correctly after the opening
-    'Let's begin!' message.
+    driver name.  Dropping the strong reference (self._engine = None) is
+    sufficient to let the WeakValueDictionary entry be garbage-collected so
+    the next pyttsx3.init() call creates a truly fresh engine.
+
+    Calling stop() after runAndWait() is harmful: stop() interrupts audio
+    that is still buffered in the OS audio layer, causing longer explanations
+    to be cut off even though runAndWait() has already returned.
     """
     from local_llm_tutor.tts_module import TTSModule
 
@@ -224,5 +224,5 @@ def test_tts_speak_stops_engine_after_each_call():
         tts.speak("Hello")
         tts.speak("World")
 
-    # stop() must be called once per speak() call (not for __init__)
-    assert mock_engine.stop.call_count == 2
+    # stop() must NOT be called during normal speak() completion
+    assert mock_engine.stop.call_count == 0

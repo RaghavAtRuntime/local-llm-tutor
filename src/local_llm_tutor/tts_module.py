@@ -54,16 +54,13 @@ class TTSModule:
                 logger.error(f"TTS speak error: {e}")
                 print(f"[TTS] {text}")
             finally:
-                # Stop and release the engine so that pyttsx3's internal cache
-                # drops the stale instance.  The next speak() call then gets a
-                # truly fresh engine via pyttsx3.init(), which is required for
-                # the event loop to restart correctly on every platform.
-                if self._engine is not None:
-                    try:
-                        self._engine.stop()
-                    except Exception as cleanup_err:
-                        logger.debug(f"TTS engine cleanup error (non-fatal): {cleanup_err}")
-                    self._engine = None
+                # Release the engine reference so that pyttsx3's internal
+                # WeakValueDictionary drops the stale instance.  The next
+                # speak() call then gets a truly fresh engine via pyttsx3.init().
+                # We intentionally do NOT call stop() here: stop() interrupts
+                # any audio still buffered in the OS layer, which causes longer
+                # explanations to be cut off even after runAndWait() returns.
+                self._engine = None
                 self._speaking = False
 
     def stop(self):
