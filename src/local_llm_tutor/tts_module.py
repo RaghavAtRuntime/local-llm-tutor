@@ -1,6 +1,7 @@
 """Text-to-Speech Module: Local TTS using pyttsx3."""
 
 import logging
+import re
 import threading
 from typing import Optional
 
@@ -10,14 +11,44 @@ logger = logging.getLogger(__name__)
 class TTSModule:
     """Handles text-to-speech conversion using pyttsx3."""
 
-    def __init__(self, rate: int = 150, volume: float = 1.0, voice_index: int = 0):
+    def __init__(self, rate: int = 150, volume: float = 1.0, voice_index: int = 0,
+                 voice_gender: Optional[str] = None):
         self.rate = rate
         self.volume = volume
         self.voice_index = voice_index
+        self.voice_gender = voice_gender
         self._engine = None
         self._speaking = False
         self._lock = threading.Lock()
         self._init_engine()
+
+    def _select_voice(self, voices):
+        """Return the best matching voice object.
+
+        If *voice_gender* is set, the first voice whose ``gender`` attribute or
+        whose name/ID contains the requested gender string is returned.  Falls
+        back to the index-based selection when no gender match is found.
+        """
+        if self.voice_gender:
+            gender = self.voice_gender.lower()
+            for v in voices:
+                v_gender = getattr(v, "gender", None)
+                if v_gender and v_gender.lower() == gender:
+                    return v
+                name = (v.name or "").lower()
+                vid = (v.id or "").lower()
+                # Use word-boundary matching to avoid false positives
+                # (e.g., "female" must not match "shemale").
+                if re.search(r'\b' + re.escape(gender) + r'\b', name) or \
+                        re.search(r'\b' + re.escape(gender) + r'\b', vid):
+                    return v
+        if self.voice_index < len(voices):
+            return voices[self.voice_index]
+        logger.warning(
+            "voice_index %d is out of range (%d voices available); using voices[0].",
+            self.voice_index, len(voices),
+        )
+        return voices[0]
 
     def _init_engine(self):
         try:
@@ -26,8 +57,8 @@ class TTSModule:
             self._engine.setProperty("rate", self.rate)
             self._engine.setProperty("volume", self.volume)
             voices = self._engine.getProperty("voices")
-            if voices and self.voice_index < len(voices):
-                self._engine.setProperty("voice", voices[self.voice_index].id)
+            if voices:
+                self._engine.setProperty("voice", self._select_voice(voices).id)
             logger.info("TTS engine initialized.")
         except Exception as e:
             logger.error(f"TTS init error: {e}")
