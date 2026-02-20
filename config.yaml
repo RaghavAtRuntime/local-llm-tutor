@@ -1,0 +1,32 @@
+tts:
+  rate: 150
+  volume: 1.0
+  voice_index: 0
+
+stt:
+  model: "base"
+  language: "en"
+  energy_threshold: 300
+
+evaluation:
+  semantic_threshold_correct: 0.75
+  semantic_threshold_partial: 0.45
+
+quiz:
+  mode: "sequential"  # sequential, random, difficulty
+  difficulty_filter: null  # easy, medium, hard, null
+  time_limit: null  # seconds, null for no limit
+
+llm:
+  provider: "ollama"
+  model: "llama3.2"
+  base_url: "http://localhost:11434"
+  enabled: false  # disabled by default, enable if Ollama is running
+
+session:
+  db_path: "tutor_sessions.db"
+  save_history: true
+
+logging:
+  level: "INFO"
+  log_file: "tutor.log"
