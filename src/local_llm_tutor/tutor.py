@@ -95,13 +95,16 @@ class Tutor:
 
         start_time = time.time()
         max_retries = 2
+        empty_attempts = 0
+        max_interactions = 20  # safety cap to prevent infinite loops
 
-        for attempt in range(max_retries + 1):
+        for _ in range(max_interactions):
             user_answer = self.listen()
             response_time = time.time() - start_time
 
             if not user_answer:
-                if attempt < max_retries:
+                if empty_attempts < max_retries:
+                    empty_attempts += 1
                     self.speak("I didn't catch that. Please try again.")
                     continue
                 else:
