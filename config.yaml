@@ -2,6 +2,7 @@ tts:
   rate: 150
   volume: 1.0
   voice_index: 0
+  voice_gender: "female"
 
 stt:
   model: "base"

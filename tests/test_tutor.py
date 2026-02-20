@@ -226,3 +226,86 @@ def test_tts_speak_does_not_stop_engine_after_each_call():
 
     # stop() must NOT be called during normal speak() completion
     assert mock_engine.stop.call_count == 0
+
+
+# --- Tests for voice gender selection ---
+
+def _make_voice(name, vid, gender=None):
+    """Helper to create a mock pyttsx3 voice object."""
+    v = MagicMock()
+    v.name = name
+    v.id = vid
+    v.gender = gender
+    return v
+
+
+def test_tts_selects_female_voice_by_gender_attribute():
+    """_select_voice picks a voice whose gender attribute equals 'female'."""
+    from local_llm_tutor.tts_module import TTSModule
+
+    male_voice = _make_voice("David", "com.apple.speech.synthesis.voice.david", "male")
+    female_voice = _make_voice("Samantha", "com.apple.speech.synthesis.voice.samantha", "female")
+    voices = [male_voice, female_voice]
+
+    mock_engine = MagicMock()
+    mock_engine.getProperty.return_value = voices
+
+    with patch("pyttsx3.init", return_value=mock_engine):
+        tts = TTSModule(voice_gender="female")
+
+    selected_id = mock_engine.setProperty.call_args_list[-1][0][1]
+    assert selected_id == female_voice.id
+
+
+def test_tts_selects_female_voice_by_name_keyword():
+    """_select_voice falls back to name-based matching when gender attr is absent."""
+    from local_llm_tutor.tts_module import TTSModule
+
+    male_voice = _make_voice("David", "voice.david", None)
+    female_voice = _make_voice("Microsoft Zira Desktop", "voice.zira.female", None)
+    voices = [male_voice, female_voice]
+
+    mock_engine = MagicMock()
+    mock_engine.getProperty.return_value = voices
+
+    with patch("pyttsx3.init", return_value=mock_engine):
+        tts = TTSModule(voice_gender="female")
+
+    selected_id = mock_engine.setProperty.call_args_list[-1][0][1]
+    assert selected_id == female_voice.id
+
+
+def test_tts_falls_back_to_voice_index_when_no_gender_match():
+    """When no voice matches the requested gender, voice_index is used."""
+    from local_llm_tutor.tts_module import TTSModule
+
+    voice_a = _make_voice("Voice A", "voice.a", "male")
+    voice_b = _make_voice("Voice B", "voice.b", "male")
+    voices = [voice_a, voice_b]
+
+    mock_engine = MagicMock()
+    mock_engine.getProperty.return_value = voices
+
+    with patch("pyttsx3.init", return_value=mock_engine):
+        tts = TTSModule(voice_index=1, voice_gender="female")
+
+    selected_id = mock_engine.setProperty.call_args_list[-1][0][1]
+    assert selected_id == voice_b.id
+
+
+def test_tts_default_voice_gender_is_none():
+    """When voice_gender is not set, voice_index selection is used as before."""
+    from local_llm_tutor.tts_module import TTSModule
+
+    voice_a = _make_voice("Voice A", "voice.a", "male")
+    voice_b = _make_voice("Voice B", "voice.b", "female")
+    voices = [voice_a, voice_b]
+
+    mock_engine = MagicMock()
+    mock_engine.getProperty.return_value = voices
+
+    with patch("pyttsx3.init", return_value=mock_engine):
+        tts = TTSModule(voice_index=0)  # no voice_gender
+
+    selected_id = mock_engine.setProperty.call_args_list[-1][0][1]
+    assert selected_id == voice_a.id

@@ -83,6 +83,7 @@ def main():
             rate=tts_cfg.get("rate", 150),
             volume=tts_cfg.get("volume", 1.0),
             voice_index=tts_cfg.get("voice_index", 0),
+            voice_gender=tts_cfg.get("voice_gender"),
         )
 
     stt_module = STTModule(
